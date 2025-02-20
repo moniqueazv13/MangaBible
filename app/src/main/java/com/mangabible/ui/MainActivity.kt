@@ -10,20 +10,20 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.mangabible.data.api.RetrofitBuilder
-//import com.mangabible.databinding.ActivityMainBinding
+import com.mangabible.databinding.ActivityMainBinding
 import com.mangabible.ui.viewmodel.MainState
 import com.mangabible.ui.viewmodel.MainViewModel
 import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
 
-//    private lateinit var binding: ActivityMainBinding
+    private lateinit var binding: ActivityMainBinding
     private lateinit var viewModel: MainViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        binding = ActivityMainBinding.inflate(layoutInflater)
-//        setContentView(binding.root)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         val helper = RetrofitBuilder.apiHelper
         val repository = MainRepository(helper)
