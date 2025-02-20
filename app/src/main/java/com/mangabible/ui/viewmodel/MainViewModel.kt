@@ -15,10 +15,9 @@ class MainViewModel(private val repository: MainRepository) : ViewModel() {
 
         fun fetchManga() {
             viewModelScope.launch {
-//                _state.value = MainState.Loading
                 try {
-                    val list = repository.fetchMangaInfo()
-                    _state.value = MainState.Success(list)
+                    val mangaData = repository.fetchMangaInfo()
+                    _state.value = MainState.Success(mangaData.attributes.posterImage.tiny)
                 } catch (e: Exception) {
                     _state.value = MainState.Error("Erro ao obter a lista de mangás: ${e.message}")
                 }
