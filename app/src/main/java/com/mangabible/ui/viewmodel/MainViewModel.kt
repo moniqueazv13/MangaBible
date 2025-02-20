@@ -1,0 +1,27 @@
+package com.mangabible.ui.viewmodel
+
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.mangabible.data.repository.MainRepository
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.launch
+
+class MainViewModel(private val repository: MainRepository) : ViewModel() {
+
+        private val _state = MutableStateFlow<MainState>(MainState.Loading)
+        val state: StateFlow<MainState>
+            get() = _state
+
+        fun fetchMangaList() {
+            viewModelScope.launch {
+//                _state.value = MainState.Loading
+                try {
+                    val list = repository.getMangaList()
+                    _state.value = MainState.Success(list)
+                } catch (e: Exception) {
+                    _state.value = MainState.Error("Erro ao obter a lista de mangás: ${e.message}")
+                }
+            }
+        }
+    }
