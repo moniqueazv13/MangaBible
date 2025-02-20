@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
         val repository = MainRepository(helper)
         val factory = MainViewModelFactory(repository)
         viewModel = ViewModelProvider(this, factory)[MainViewModel::class.java]
-        viewModel.fetchMangaList()
+        viewModel.fetchManga()
 
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
