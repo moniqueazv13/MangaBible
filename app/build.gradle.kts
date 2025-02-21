@@ -79,6 +79,8 @@ dependencies {
 
     implementation(libs.androidx.activity.compose)
 
+    implementation("io.coil-kt:coil-compose:2.6.0")
+
 
     //kapt
     kapt("com.squareup.moshi:moshi-kotlin-codegen:1.15.0")

@@ -4,8 +4,12 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
@@ -16,6 +20,9 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
+import coil.compose.AsyncImage
+import com.mangabible.ui.MangaVO
 import com.mangabible.ui.intent.MainIntent
 import com.mangabible.ui.theme.MyApplicationTheme
 import com.mangabible.ui.viewmodel.MainState
@@ -67,6 +74,27 @@ fun MainScreen(viewModel: MainViewModel = koinViewModel()) {
 }
 
 @Composable
-fun MangaList(mangaList: String) {
-Text(text = mangaList)
+fun LoadImageFromUrl(imageUrl: String) {
+    AsyncImage(
+        model = imageUrl,
+        contentDescription = "Imagem carregada da URL",
+        modifier = Modifier.fillMaxSize()
+    )
+}
+
+@Composable
+fun MangaList(mangaList: List<MangaVO>) {
+    mangaList.map {
+        Text(text = it.title)
+        Spacer(modifier = Modifier.height(8.dp))
+        Text(text = it.status)
+        Spacer(modifier = Modifier.height(8.dp))
+        Text(text = it.synopsis)
+        Spacer(modifier = Modifier.height(8.dp))
+        Text(text = it.createdAt)
+        Text(text = it.updatedAt)
+        Text(text = it.ratingRank.toString())
+        Spacer(modifier = Modifier.height(8.dp))
+        LoadImageFromUrl(imageUrl = it.coverImage)
+    }
 }

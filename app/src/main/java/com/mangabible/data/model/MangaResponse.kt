@@ -1,15 +1,15 @@
-package com.example.myapplication.data.model
+package com.mangabible.data.model
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
 data class MangaResponse(
-    val data: List<Data>,
+    val data: List<Data>
 )
 
 @JsonClass(generateAdapter = true)
 data class Data(
     val id: String,
-    val attributes: Attributes,
+    val attributes: Attributes
 )
 
 @JsonClass(generateAdapter = true)
@@ -20,5 +20,5 @@ data class Attributes(
     val title: String,
     val ratingRank: Long,
     val status: String,
-    val coverImage: String,
+    val coverImage: String
 )

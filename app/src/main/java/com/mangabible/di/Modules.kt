@@ -1,7 +1,7 @@
 package com.example.myapplication.di
 import com.mangabible.data.api.ApiHelper
 import com.mangabible.data.api.RetrofitBuilder
-import com.example.myapplication.data.repository.MainRepository
+import com.mangabible.data.repository.MainRepository
 import com.mangabible.ui.viewmodel.MainViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
