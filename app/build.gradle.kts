@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     id("kotlin-kapt")
+    alias(libs.plugins.kotlin.compose)
 }
 
 android {
@@ -68,6 +69,16 @@ dependencies {
     // ViewModel KTX (inclui viewModelScope)
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")
     implementation(libs.androidx.tracing.perfetto.handshake)
+    implementation(libs.androidx.runtime.android)
+    implementation(libs.androidx.storage)
+    implementation(libs.androidx.material3.android)
+
+    // Koin
+    implementation(libs.koin.android)
+    implementation(libs.koin.androidx.compose)
+
+    implementation(libs.androidx.activity.compose)
+
 
     //kapt
     kapt("com.squareup.moshi:moshi-kotlin-codegen:1.15.0")
