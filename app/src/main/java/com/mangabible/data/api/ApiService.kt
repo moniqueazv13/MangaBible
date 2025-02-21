@@ -1,10 +1,12 @@
 package com.mangabible.data.api
 
-import com.mangabible.data.model.KitsuResponse
+import com.example.myapplication.data.model.MangaResponse
 import retrofit2.http.GET
 
 interface ApiService {
 
-      @GET("trending/anime")
-      suspend fun getManga(): KitsuResponse
+
+    @GET("Anime")
+    suspend fun getManga(): List<MangaResponse>
    }
+

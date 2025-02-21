@@ -30,7 +30,7 @@ object RetrofitBuilder {
         .build()
 
     private val retrofit = Retrofit.Builder()
-        .baseUrl("https://kitsu.io/api/edge/")
+        .baseUrl("https://6428befb5a40b82da4c72174.mockapi.io/api/v1/")
         .addConverterFactory(MoshiConverterFactory.create(moshi))
         .client(okHttpClient)
         .build()

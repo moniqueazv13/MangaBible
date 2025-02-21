@@ -1,4 +1,4 @@
-package com.mangabible.data.repository
+package com.example.myapplication.data.repository
 
 import com.mangabible.data.api.ApiHelper
 
