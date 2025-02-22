@@ -9,4 +9,12 @@ class LoginRepositoryImpl : ILoginRepository {
         // Por enquanto, vamos simular um login bem-sucedido.
         return true
     }
+
+
+    override fun isLoggedIn(): Boolean {
+        // Here you should check if the user is logged in.
+        // For example, you can check if there is a token stored in the shared preferences.
+        // For now, we will return true.
+        return true
+    }
 }
