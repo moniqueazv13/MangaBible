@@ -16,4 +16,5 @@ val appModule = module {
     single { LoginRepositoryImpl() }
     viewModel { LoginViewModel(get()) }
     viewModel { MainViewModel(get()) }
+    viewModel { SplashViewModel(get()) }
 }

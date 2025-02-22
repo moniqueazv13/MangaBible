@@ -15,6 +15,6 @@ class LoginRepositoryImpl : ILoginRepository {
         // Here you should check if the user is logged in.
         // For example, you can check if there is a token stored in the shared preferences.
         // For now, we will return true.
-        return true
+        return false
     }
 }
