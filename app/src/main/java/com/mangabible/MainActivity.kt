@@ -28,10 +28,10 @@ import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.mangabible.ui.DateTimeUtils
 import com.mangabible.ui.MangaVO
-import com.mangabible.ui.intent.MainIntent
+import com.mangabible.ui.intent.MangaIntent
 import com.mangabible.ui.theme.MyApplicationTheme
-import com.mangabible.ui.viewmodel.MainState
-import com.mangabible.ui.viewmodel.MainViewModel
+import com.mangabible.ui.viewmodel.main.MainState
+import com.mangabible.ui.viewmodel.main.MainViewModel
 import org.koin.androidx.compose.koinViewModel
 
 private const val EMPTY_STRING = ""
@@ -61,7 +61,7 @@ fun MainScreen(viewModel: MainViewModel = koinViewModel()) {
         ) {
             when (state) {
                 is MainState.Idle -> {
-                    viewModel.processIntent(MainIntent.FetchManga)
+                    viewModel.processIntent(MangaIntent.FetchManga)
                 }
 
                 is MainState.Loading -> {

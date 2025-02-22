@@ -1,23 +1,23 @@
-package com.mangabible.ui.viewmodel
+package com.mangabible.ui.viewmodel.main
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.mangabible.data.repository.MainRepository
+import com.mangabible.data.repository.MangaRepositoryImpl
 import com.mangabible.data.model.MangaResponse
 import com.mangabible.ui.MangaVO
-import com.mangabible.ui.intent.MainIntent
+import com.mangabible.ui.intent.MangaIntent
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
-class MainViewModel(private val repository: MainRepository) : ViewModel() {
+class MainViewModel(private val repository: MangaRepositoryImpl) : ViewModel() {
 
     private val _state = MutableStateFlow<MainState>(MainState.Idle)
     val state: StateFlow<MainState> = _state
 
-    fun processIntent(intent: MainIntent) {
+    fun processIntent(intent: MangaIntent) {
         when (intent) {
-            is MainIntent.FetchManga -> fetchManga()
+            is MangaIntent.FetchManga -> fetchManga()
         }
     }
 

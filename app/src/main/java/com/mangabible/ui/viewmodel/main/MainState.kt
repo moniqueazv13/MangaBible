@@ -1,4 +1,4 @@
-package com.mangabible.ui.viewmodel
+package com.mangabible.ui.viewmodel.main
 
 import com.mangabible.ui.MangaVO
 
