@@ -15,7 +15,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -34,6 +33,8 @@ import com.mangabible.ui.theme.MyApplicationTheme
 import com.mangabible.ui.viewmodel.MainState
 import com.mangabible.ui.viewmodel.MainViewModel
 import org.koin.androidx.compose.koinViewModel
+
+private const val EMPTY_STRING = ""
 
 class MainActivity : ComponentActivity() {
     @RequiresApi(Build.VERSION_CODES.O)
@@ -83,7 +84,7 @@ fun MainScreen(viewModel: MainViewModel = koinViewModel()) {
 fun LoadImageFromUrl(imageUrl: String) {
     AsyncImage(
         model = imageUrl,
-        contentDescription = "",
+        contentDescription = EMPTY_STRING,
         modifier = Modifier.size(300.dp)
     )
 }
