@@ -1,6 +1,11 @@
-Este projeto está sendo utilizado para estudos de: 
-- Arquitetura MVI
-- Compose
-- Testes
+Overview
+This Android project is just for studies in Jetpack Compose.
 
-# A API está sendo mockada pelo mockAPI.
+Features ✨
+🥇 MVI Architecture
+🎨 Compose
+🚀 Kotlin
+🗄️ Coroutines & Flow
+🚀 Retrofit
+
+I will improve my code in the future! 🚀✨
