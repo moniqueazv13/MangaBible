@@ -26,32 +26,30 @@ class MainViewModel(private val repository: MainRepository) : ViewModel() {
             _state.value = MainState.Loading
             try {
                 val mangaResponse = repository.fetchMangaInfo()
-               val data = getMangaData(mangaResponse)
-                _state.value = MainState.Success(data?: emptyList())
+               val data = mapMangaResponsesToVOs(mangaResponse)
+                _state.value = MainState.Success(data)
             } catch (e: Exception) {
                 _state.value = MainState.Error("Error: ${e.message}")
             }
         }
     }
 
-    private fun mangaVOList(it: MangaResponse?): List<MangaVO>? {
-        return it?.data?.map {
-            MangaVO(
-                createdAt = it.attributes.createdAt,
-                updatedAt = it.attributes.updatedAt,
-                synopsis = it.attributes.synopsis,
-                title = it.attributes.title,
-                status = it.attributes.status,
-                coverImage = it.attributes.coverImage,
-                ratingRank = it.attributes.ratingRank
-            )
+    private fun mapMangaResponsesToVOs(mangaResponses: List<MangaResponse>): List<MangaVO> {
+        val mangaVOs = mutableListOf<MangaVO>()
+        for (response in mangaResponses) {
+            for (mangaData in response.data) {
+                val mangaVO = MangaVO(
+                    createdAt = mangaData.attributes.createdAt,
+                    updatedAt = mangaData.attributes.updatedAt,
+                    synopsis = mangaData.attributes.synopsis,
+                    title = mangaData.attributes.title,
+                    status = mangaData.attributes.status,
+                    coverImage = mangaData.attributes.coverImage,
+                    ratingRank = mangaData.attributes.ratingRank
+                )
+                mangaVOs.add(mangaVO)
+            }
         }
-    }
-
-    private fun getMangaData(mangaList: List<MangaResponse>): List<MangaVO>? {
-        mangaList.map {
-            return mangaVOList(it)
-        }
-        return emptyList()
+        return mangaVOs
     }
 }
