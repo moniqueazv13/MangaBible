@@ -18,20 +18,15 @@ class DetailsActivity : ComponentActivity() {
     @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         val mangaVO = intent.getParcelableExtra(MANGA_ITEM, MangaVO::class.java)
-
         setContent {
             MaterialTheme {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    if (mangaVO != null) {
-                        MangaDetailsItemScreen(mangaVO)
-                    } else {
-                        Text("Error: Manga details not found.")
-                    }
+                    mangaVO?.let { MangaDetailsItemScreen(it) }
+                        ?: Text("Error: Manga details not found.")
                 }
             }
         }

@@ -7,7 +7,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.annotation.RequiresApi
 import com.mangabible.ui.screen.MainScreen
-import com.mangabible.ui.theme.MyApplicationTheme
+import com.mangabible.ui.theme.AnimeBibleTheme
 
 
 class MainActivity : ComponentActivity() {
@@ -16,7 +16,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            MyApplicationTheme { MainScreen(context = this) }
+            AnimeBibleTheme { MainScreen(context = this) }
         }
     }
 }
