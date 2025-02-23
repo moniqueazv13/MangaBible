@@ -28,6 +28,7 @@ import androidx.core.os.bundleOf
 import com.mangabible.DetailsActivity
 import com.mangabible.ui.MangaVO
 import com.mangabible.ui.intent.MangaIntent
+import com.mangabible.ui.theme.Pink
 import com.mangabible.ui.viewmodel.main.MainAction
 import com.mangabible.ui.viewmodel.main.MainState
 import com.mangabible.ui.viewmodel.main.MainViewModel
@@ -54,7 +55,7 @@ fun MainScreen(viewModel: MainViewModel = koinViewModel(), context: Context) {
                 }
 
                 is MainState.Loading -> {
-                    CircularProgressIndicator()
+                    CircularProgressIndicator(color = Pink)
                 }
 
                 is MainState.Success -> {

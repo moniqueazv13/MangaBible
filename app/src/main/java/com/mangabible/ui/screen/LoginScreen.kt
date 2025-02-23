@@ -1,6 +1,5 @@
 package com.mangabible.ui.screen
 
-import com.mangabible.ui.viewmodel.login.LoginViewModel
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -8,6 +7,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
@@ -18,6 +18,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.mangabible.ui.intent.LoginIntent
+import com.mangabible.ui.theme.Disable
+import com.mangabible.ui.theme.Pink
+import com.mangabible.ui.theme.White
+import com.mangabible.ui.viewmodel.login.LoginViewModel
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
@@ -55,7 +59,13 @@ fun LoginScreen(
         Button(
             onClick = { viewModel.processIntent(LoginIntent.LoginButtonClicked) },
             modifier = Modifier.fillMaxWidth(),
-            enabled = !state.isLoading
+            enabled = !state.isLoading,
+            colors = ButtonColors(
+                disabledContentColor = Disable,
+                disabledContainerColor = Disable,
+                contentColor = White,
+                containerColor = Pink
+            )
         ) {
             if (state.isLoading) {
                 CircularProgressIndicator()
