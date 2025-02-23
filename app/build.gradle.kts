@@ -45,6 +45,9 @@ android {
 
 
 dependencies {
+    // Glide
+    implementation("com.github.bumptech.glide:glide:4.16.0")
+    implementation("com.github.bumptech.glide:compose:1.0.0-beta01")
 
     // Kotlin Coroutines
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
@@ -78,13 +81,16 @@ dependencies {
     implementation(libs.koin.android)
     implementation(libs.koin.androidx.compose)
 
+    // Compose
     implementation(libs.androidx.activity.compose)
 
+    // Coil
     implementation("io.coil-kt:coil-compose:2.6.0")
 
 
     //kapt
     kapt("com.squareup.moshi:moshi-kotlin-codegen:1.15.0")
+
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
