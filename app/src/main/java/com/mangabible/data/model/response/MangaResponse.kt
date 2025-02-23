@@ -1,4 +1,4 @@
-package com.mangabible.data.model
+package com.mangabible.data.model.response
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)

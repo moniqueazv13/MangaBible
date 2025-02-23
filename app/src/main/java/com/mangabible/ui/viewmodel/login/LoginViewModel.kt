@@ -2,44 +2,51 @@ package com.mangabible.ui.viewmodel.login
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.mangabible.data.repository.LoginRepositoryImpl
+import com.mangabible.data.model.entity.User
+import com.mangabible.data.repository.UserRepositoryImpl
 import com.mangabible.ui.intent.LoginIntent
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
-class LoginViewModel(private val loginRepositoryImpl: LoginRepositoryImpl) : ViewModel() {
+class LoginViewModel(private val userRepository: UserRepositoryImpl) : ViewModel() {
 
-    private val _state = MutableStateFlow(LoginState())
-    val state: StateFlow<LoginState> = _state
+    private val _state = MutableStateFlow<LoginState>(LoginState.Idle)
+    val state: StateFlow<LoginState> = _state.asStateFlow()
 
     fun processIntent(intent: LoginIntent) {
         when (intent) {
-            is LoginIntent.UsernameChanged -> {
-                _state.update { it.copy(username = intent.username) }
-            }
-            is LoginIntent.PasswordChanged -> {
-                _state.update { it.copy(password = intent.password) }
-            }
-            LoginIntent.LoginButtonClicked -> {
-                login()
+            is LoginIntent.Login -> login(intent.username, intent.password)
+            is LoginIntent.Register -> register(intent.username, intent.password)
+        }
+    }
+
+    private fun login(username: String, password: String) {
+        viewModelScope.launch {
+            _state.value = LoginState.Loading
+            userRepository.getUserByUsername(username).collect { user ->
+//                if (user != null && checkPassword(password, user.passwordHash)) {
+//                    _state.value = LoginState.Success
+//                } else {
+//                    _state.value = LoginState.Error("Invalid username or password")
+//                }
             }
         }
     }
 
-    private fun login() {
+    private fun register(username: String, password: String) {
         viewModelScope.launch {
-            _state.update { it.copy(isLoading = true, errorMessage = null) }
-            try {
-                val result = loginRepositoryImpl.login(state.value.username, state.value.password)
-                if (result) {
-                    _state.update { it.copy(isLoading = false, isLoggedIn = true) }
-                } else {
-                    _state.update { it.copy(isLoading = false, errorMessage = "Login falhou") }
-                }
-            } catch (e: Exception) {
-                _state.update { it.copy(isLoading = false, errorMessage = "Erro de conexão") }
+            _state.value = LoginState.Loading
+            userRepository.getUserByUsername(username).collect { user ->
+//                if (user == null) {
+//                    val passwordHash = hashPassword(password)
+//                    val newUser = User(username = username, passwordHash = passwordHash)
+//                    userRepository.insertUser(newUser)
+//                    _state.value = LoginState.Success
+//                } else {
+//                    _state.value = LoginState.Error("Username already exists")
+//                }
             }
         }
     }

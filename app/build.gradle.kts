@@ -86,6 +86,8 @@ dependencies {
 
     // Coil
     implementation("io.coil-kt:coil-compose:2.6.0")
+    implementation(libs.androidx.room.common)
+    implementation(libs.androidx.room.ktx)
 
 
     //kapt

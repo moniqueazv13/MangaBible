@@ -1,9 +1,8 @@
 package com.mangabible.ui.viewmodel.login
 
-data class LoginState(
-    val username: String = "",
-    val password: String = "",
-    val isLoading: Boolean = false,
-    val errorMessage: String? = null,
-    val isLoggedIn: Boolean = false
-)
+sealed class LoginState {
+    data object Loading : LoginState()
+    data object Success : LoginState()
+    data class Error(val message: String) : LoginState()
+    data object Idle : LoginState()
+}

@@ -2,7 +2,7 @@ package com.mangabible.ui.viewmodel.main
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.mangabible.data.model.Data
+import com.mangabible.data.model.response.Data
 import com.mangabible.data.repository.MangaRepositoryImpl
 import com.mangabible.ui.MangaVO
 import com.mangabible.ui.intent.MangaIntent

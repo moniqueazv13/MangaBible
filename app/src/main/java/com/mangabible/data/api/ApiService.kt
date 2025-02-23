@@ -1,6 +1,6 @@
 package com.mangabible.data.api
 
-import com.mangabible.data.model.Data
+import com.mangabible.data.model.response.Data
 import retrofit2.http.GET
 
 interface ApiService {
