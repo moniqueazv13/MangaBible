@@ -2,8 +2,8 @@ package com.mangabible.ui.viewmodel.main
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.mangabible.data.model.Data
 import com.mangabible.data.repository.MangaRepositoryImpl
-import com.mangabible.data.model.MangaResponse
 import com.mangabible.ui.MangaVO
 import com.mangabible.ui.intent.MangaIntent
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -38,7 +38,7 @@ class MainViewModel(private val repository: MangaRepositoryImpl) : ViewModel() {
             _state.value = MainState.Loading
             try {
                 val mangaResponse = repository.fetchMangaInfo()
-               val data = mapMangaResponsesToVOs(mangaResponse)
+                val data = mapMangaResponsesToVOs(mangaResponse)
                 _state.value = MainState.Success(data)
             } catch (e: Exception) {
                 _state.value = MainState.Error("Error: ${e.message}")
@@ -46,22 +46,15 @@ class MainViewModel(private val repository: MangaRepositoryImpl) : ViewModel() {
         }
     }
 
-    private fun mapMangaResponsesToVOs(mangaResponses: List<MangaResponse>): List<MangaVO> {
-        val mangaVOs = mutableListOf<MangaVO>()
-        for (response in mangaResponses) {
-            for (mangaData in response.data) {
-                val mangaVO = MangaVO(
-                    createdAt = mangaData.attributes.createdAt,
-                    updatedAt = mangaData.attributes.updatedAt,
-                    synopsis = mangaData.attributes.synopsis,
-                    title = mangaData.attributes.title,
-                    status = mangaData.attributes.status,
-                    coverImage = mangaData.attributes.coverImage,
-                    ratingRank = mangaData.attributes.ratingRank
-                )
-                mangaVOs.add(mangaVO)
-            }
-        }
-        return mangaVOs
+    private fun mapMangaResponsesToVOs(mangaResponses: List<Data>) = mangaResponses.map {
+        MangaVO(
+            createdAt = it.attributes.createdAt,
+            updatedAt = it.attributes.updatedAt,
+            synopsis = it.attributes.synopsis,
+            title = it.attributes.title,
+            status = it.attributes.status,
+            coverImage = it.attributes.coverImage,
+            ratingRank = it.attributes.ratingRank
+        )
     }
 }
