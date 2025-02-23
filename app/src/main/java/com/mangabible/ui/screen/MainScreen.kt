@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -83,8 +84,12 @@ fun MainScreen(viewModel: MainViewModel = koinViewModel(), context: Context) {
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun MangaList(mangaList: List<MangaVO>, onItemClick: (MangaVO) -> Unit) {
+    Box {
+        Text(text = "Animes:", fontSize = 30.sp)
+
+    }
     LazyColumn(
-        modifier = Modifier.fillMaxWidth()
+        modifier = Modifier.fillMaxSize()
     ) {
         items(mangaList) { manga ->
             MangaItem(manga = manga, onItemClick)
@@ -102,7 +107,7 @@ fun MangaItem(manga: MangaVO, onItemClick: (MangaVO) -> Unit) {
             .padding(8.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(text = "Title: ${manga.title}", fontSize = 20.sp)
+        Text(text = manga.title, fontSize = 20.sp)
         Spacer(modifier = Modifier.height(8.dp))
         Text(text = "Status: ${manga.status}")
         Spacer(modifier = Modifier.height(8.dp))
