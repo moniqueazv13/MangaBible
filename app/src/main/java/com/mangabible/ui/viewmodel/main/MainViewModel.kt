@@ -6,7 +6,9 @@ import com.mangabible.data.repository.MangaRepositoryImpl
 import com.mangabible.data.model.MangaResponse
 import com.mangabible.ui.MangaVO
 import com.mangabible.ui.intent.MangaIntent
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
@@ -15,9 +17,19 @@ class MainViewModel(private val repository: MangaRepositoryImpl) : ViewModel() {
     private val _state = MutableStateFlow<MainState>(MainState.Idle)
     val state: StateFlow<MainState> = _state
 
+    private val _action = MutableSharedFlow<MainAction>()
+    val action: SharedFlow<MainAction> = _action
+
     fun processIntent(intent: MangaIntent) {
         when (intent) {
             is MangaIntent.FetchManga -> fetchManga()
+            is MangaIntent.OpenDetails -> openDetails(intent.mangaVO)
+        }
+    }
+
+    private fun openDetails(mangaVO: MangaVO) {
+        viewModelScope.launch {
+            _action.emit(MainAction.RedirectToDetails(mangaVO))
         }
     }
 
