@@ -25,7 +25,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.content.ContextCompat.startActivity
-import androidx.core.os.bundleOf
 import com.mangabible.DetailsActivity
 import com.mangabible.ui.MangaVO
 import com.mangabible.ui.intent.MangaIntent
