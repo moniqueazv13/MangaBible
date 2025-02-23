@@ -4,11 +4,11 @@ import android.app.Application
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 
-class KoinApplication : Application() {
+class MangaBibleApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         startKoin {
-            androidContext(this@KoinApplication)
+            androidContext(this@MangaBibleApplication)
             modules(appModule)
         }
     }

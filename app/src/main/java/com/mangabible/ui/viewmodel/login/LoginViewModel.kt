@@ -26,11 +26,11 @@ class LoginViewModel(private val userRepository: UserRepositoryImpl) : ViewModel
         viewModelScope.launch {
             _state.value = LoginState.Loading
             userRepository.getUserByUsername(username).collect { user ->
-//                if (user != null && checkPassword(password, user.passwordHash)) {
-//                    _state.value = LoginState.Success
-//                } else {
-//                    _state.value = LoginState.Error("Invalid username or password")
-//                }
+                if (user != null && checkPassword(password, user.passwordHash)) {
+                    _state.value = LoginState.Success
+                } else {
+                    _state.value = LoginState.Error("Invalid username or password")
+                }
             }
         }
     }
@@ -39,15 +39,26 @@ class LoginViewModel(private val userRepository: UserRepositoryImpl) : ViewModel
         viewModelScope.launch {
             _state.value = LoginState.Loading
             userRepository.getUserByUsername(username).collect { user ->
-//                if (user == null) {
-//                    val passwordHash = hashPassword(password)
-//                    val newUser = User(username = username, passwordHash = passwordHash)
-//                    userRepository.insertUser(newUser)
-//                    _state.value = LoginState.Success
-//                } else {
-//                    _state.value = LoginState.Error("Username already exists")
-//                }
+                if (user == null) {
+                    val passwordHash = hashPassword(password)
+                    val newUser = User(username = username, passwordHash = passwordHash)
+                    userRepository.insertUser(newUser)
+                    _state.value = LoginState.Success
+                } else {
+                    _state.value = LoginState.Error("Username already exists")
+                }
             }
         }
+    }
+
+
+    private fun hashPassword(password: String): String {
+        // Implement password hashing here (e.g., using a library like Argon2)
+        return password
+    }
+
+    private fun checkPassword(password: String, passwordHash: String): Boolean {
+        // Implement password checking here (e.g., comparing the hashed password)
+        return password == passwordHash
     }
 }
